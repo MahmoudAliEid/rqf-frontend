@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === "rtl";
+
   return (
     <section
       id="home"
@@ -12,7 +16,7 @@ const Hero = () => {
         <div className="absolute h-full w-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE1MCAyMDBMMTA1IDEwMEwxNTAgMEwxOTUgMTAwTDE1MCAyMDBaTTUwIDIwMEw1IDEwMEw1MCAwTDk1IDEwMEw1MCAyMDBaIiBmaWxsPSIjNENBRjUwIiBmaWxsLW9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==')]"></div>
       </div>
 
-      <div className="container-custom relative z-10 flex h-full items-center">
+      <div className="container-custom relative z-10 flex h-full items-center" dir={isRTL ? 'rtl' : 'ltr'}>
         <div className="grid gap-12 pb-20 pt-10 md:grid-cols-2 md:pb-32 md:pt-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -20,25 +24,26 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex flex-col justify-center"
           >
-            <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
-              نجعل من حديقتك تحفة فنية خضراء
+            <span className={`mb-4 inline-block rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary ${isRTL ? 'text-right' : 'text-left'}`}>
+              {t("hero.tagline")}
             </span>
-            <h1 className="mb-6 text-shimmer">
-              حلول متكاملة <br />
-              <span className="text-primary">للمساحات الخضراء</span>
+            <h1 className={`mb-6 text-shimmer text-4xl sm:text-5xl md:text-6xl font-bold leading-tight ${isRTL ? 'text-right' : 'text-left'}`}>
+              {t("hero.welcome")}
             </h1>
-            <p className="mb-8 text-xl leading-relaxed text-muted-foreground">
-              نقدم خدمات احترافية في تصميم وتنسيق الحدائق وتركيب شبكات الري
-              وصيانة المساحات الخضراء بأعلى معايير الجودة.
+            <p className={`mb-4 text-xl leading-relaxed text-muted-foreground ${isRTL ? 'text-right' : 'text-left'}`}>
+              {t("hero.description")}
             </p>
-            <div className="flex flex-wrap gap-4">
+            <p className={`mb-8 text-lg leading-relaxed text-muted-foreground ${isRTL ? 'text-right' : 'text-left'}`}>
+              {t("hero.team_commitment")}
+            </p>
+            <div className={`flex flex-wrap gap-4 ${isRTL ? 'justify-end' : 'justify-start'}`}>
               <Button
                 size="lg"
-                className="bg-primary
-               text-white"
+                className="bg-primary text-white"
                 onClick={() => (window.location.href = "#contact")}
               >
-                <Phone className="h-4 w-4" /> تواصل معنا
+                <Phone className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                {t("hero.cta_button")}
               </Button>
               <Button
                 size="lg"
@@ -46,7 +51,7 @@ const Hero = () => {
                 onClick={() => (window.location.href = "#services")}
                 className="gap-2"
               >
-                <span>استكشف خدماتنا</span>
+                <span>{t("hero.explore_services")}</span>
                 <ArrowDown className="h-4 w-4" />
                 <span className="absolute -z-10 h-0.5 w-full bg-primary transition-all duration-300 group-hover:w-full"></span>
               </Button>
@@ -64,13 +69,13 @@ const Hero = () => {
                 className="h-full w-full bg-cover bg-center bg-no-repeat"
                 style={{
                   backgroundImage:
-                    "url('https://images.pexels.com/photos/1469196/pexels-photo-1469196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+                    "url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
                 }}
               ></div>
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
             </div>
 
-            <div className="absolute -bottom-6 right-10 rounded-xl bg-white p-4 shadow-lg dark:bg-card">
+            <div className={`absolute -bottom-6 ${isRTL ? 'left-10' : 'right-10'} rounded-xl bg-white p-4 shadow-lg dark:bg-card`}>
               <div className="flex items-center gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <svg
@@ -83,13 +88,13 @@ const Hero = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-medium">خدمة احترافية</p>
-                  <p className="text-sm text-muted-foreground">بضمان 100%</p>
+                  <p className={`font-medium ${isRTL ? 'text-right' : 'text-left'}`}>{t("hero.professional_service")}</p>
+                  <p className={`text-sm text-muted-foreground ${isRTL ? 'text-right' : 'text-left'}`}>{t("hero.guarantee")}</p>
                 </div>
               </div>
             </div>
 
-            <div className="absolute -left-6 top-20 rounded-xl bg-white p-4 shadow-lg dark:bg-card">
+            <div className={`absolute ${isRTL ? '-right-6' : '-left-6'} top-20 rounded-xl bg-white p-4 shadow-lg dark:bg-card`}>
               <div className="flex items-center gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                   <svg
@@ -102,8 +107,8 @@ const Hero = () => {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-medium">خبرة 15+ عام</p>
-                  <p className="text-sm text-muted-foreground">في المجال</p>
+                  <p className={`font-medium ${isRTL ? 'text-right' : 'text-left'}`}>{t("hero.experience")}</p>
+                  <p className={`text-sm text-muted-foreground ${isRTL ? 'text-right' : 'text-left'}`}>{t("hero.in_field")}</p>
                 </div>
               </div>
             </div>
@@ -114,9 +119,9 @@ const Hero = () => {
       <a
         href="#about"
         className="absolute bottom-10 left-1/2 flex -translate-x-1/2 animate-bounce flex-col items-center justify-center"
-        aria-label="انتقل إلى الأسفل"
+        aria-label={t("hero.discover_more")}
       >
-        <span className="mb-2 text-sm text-muted-foreground">اكتشف المزيد</span>
+        <span className="mb-2 text-sm text-muted-foreground">{t("hero.discover_more")}</span>
         <ArrowDown className="h-5 w-5 text-primary" />
       </a>
     </section>

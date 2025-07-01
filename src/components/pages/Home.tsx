@@ -1,20 +1,25 @@
 import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Services from "@/components/sections/Services";
-import Projects from "@/components/sections/Projects";
-import WhyUs from "@/components/sections/WhyUs";
+import AboutUs from "@/components/sections/AboutUs";
+// import Services from "@/components/sections/Services";
+import OurServices from "@/components/sections/OurServices";
+import OurTeam from "@/components/sections/OurTeam";
+// import Projects from "@/components/sections/Projects";
+// import WhyUs from "@/components/sections/WhyUs";
 import Contact from "@/components/sections/Contact";
-import Work from "@/components/sections/Work";
+// import Work from "@/components/sections/Work";
 
 const Home = () => {
   return (
     <>
       <Hero />
-      <About />
-      <Services />
-      <Projects />
-      <Work />
-      <WhyUs />
+     
+      <AboutUs />
+      {/* <Services /> */}
+      <OurServices />
+      <OurTeam />
+      {/* <Projects /> */}
+      {/* <Work /> */}
+      {/* <WhyUs /> */}
       <Contact />
     </>
   );

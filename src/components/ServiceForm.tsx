@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
-import { useMutation,useQueryClient  } from "@tanstack/react-query";
+import { useMutation,useQueryClient, useQuery  } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 function ServiceForm({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+}: React.ComponentPropsWithoutRef<"div"> & { id?: string }) {
   const location = useLocation();
   const [isLoginPage, setIsLoginPage] = useState(false);
   const [issa, setIsSubmitting] = useState(false);
@@ -31,6 +31,49 @@ function ServiceForm({
     categoryId: "",
     images: [] as File[]
   });
+
+  const { data: serviceData } = useQuery(
+    props.id
+      ? {
+          queryKey: ["service", props.id],
+          queryFn: async () => {
+            const response = await fetch(
+              `${import.meta.env.VITE_BACKEND_URL}/api/service/${props.id}`,
+              {
+                method: "GET",
+              }
+            );
+            if (!response.ok) {
+              throw new Error(`${t("create_service.error")}`);
+            }
+            return response.json();
+          },
+          enabled: !!props.id,
+        }
+      : {
+          queryKey: ["service", null],
+          queryFn: async () => null,
+          enabled: false,
+        }
+  );
+
+  useEffect(() => {
+    if (serviceData && props.id) {
+      setservice({
+        name: serviceData.name,
+        description: serviceData.description,
+        ar_name: serviceData.ar_name,
+        ar_description: serviceData.ar_description,
+        categoryId: serviceData.categoryId || "",
+        images: serviceData.images.map((image: string) => {
+          // Convert image URL to File object
+          const url = new URL(image);
+          const fileName = url.pathname.split("/").pop() || "image.jpg";
+          return new File([], fileName, { type: "image/jpeg" });
+        }),
+      });
+    }
+  }, [serviceData, props.id]);
 
 
   
@@ -55,13 +98,16 @@ function ServiceForm({
 
         console.log('form data', formData)
         
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/create-service`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const url = props.id
+        ? `${import.meta.env.VITE_BACKEND_URL}/api/service/${props.id}`
+        : `${import.meta.env.VITE_BACKEND_URL}/api/create-service`;
+
+      const method = props.id ? "PUT" : "POST";
+
+      const response = await fetch(url, {
+        method,
+        body: formData,
+      });
       if (!response.ok) {
         throw new Error(`{t("create_service.error")}`);
       }
@@ -69,21 +115,23 @@ function ServiceForm({
     },
     onSuccess: () => {
       setTimeout(() => {
-        queryClient.invalidateQueries({ queryKey: ["services"] }).then(() => {
-          toast({
-            title: "نجاح",
-            description: `${t("create_service.success")}`,
-            variant: "default",
-          });
-          navigate("/admin/services");
+        queryClient.invalidateQueries({ queryKey: ["services"] });
+        if (props.id) {
+          queryClient.invalidateQueries({ queryKey: ["service", props.id] });
+        }
+        toast({
+          title: "نجاح",
+          description: `${props.id ? t("edit_service.success") : t("create_service.success")}`,
+          variant: "default",
         });
-      }, 3000);
+        navigate("/admin/services");
+      }, 1000);
     },
     onError: () => {
       setIsSubmitting(false);
       toast({
         title: "خطأ",
-        description: `${t("create_service.error")}`,
+        description: `${props.id ? t("edit_service.error") : t("create_service.error")}`,
         variant: "destructive",
       });
     },
@@ -148,10 +196,10 @@ function ServiceForm({
       <Card className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl fade-up p-2 sm:p-4 md:p-6 lg:p-8">
         <CardHeader>
           <CardTitle className="text-xl sm:text-2xl md:text-3xl">
-            {t("create_service.title")}
+            {props.id ? t("edit_service.title") : t("create_service.title")}
           </CardTitle>
           <CardDescription className="text-sm md:text-base">
-            {t("create_service.form_description")}
+            {props.id ? t("edit_service.form_description") : t("create_service.form_description")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -266,8 +314,8 @@ function ServiceForm({
                   }`}
                   disabled={issa}>
                   {issa
-                    ? t("create_service.saving_service")
-                    : t("create_service.save_new_service")
+                    ? (props.id ? t("edit_service.updating_service") : t("create_service.saving_service"))
+                    : (props.id ? t("edit_service.update_service") : t("create_service.save_new_service"))
                   }
                 </Button>
               </div>

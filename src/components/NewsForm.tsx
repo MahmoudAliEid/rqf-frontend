@@ -14,6 +14,7 @@ import { useMutation,useQueryClient  } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import MdEditor from "@uiw/react-md-editor";
 
 function BlogForm({
   className,
@@ -22,7 +23,7 @@ function BlogForm({
   const location = useLocation();
   const [isLoginPage, setIsLoginPage] = useState(false);
   const [issa, setIsSubmitting] = useState(false);
-  const { t } = useTranslation();
+  const { i18n,t } = useTranslation();
   const [blogData, setblogData] = useState({
     name: "",
     description: "",
@@ -137,28 +138,29 @@ function BlogForm({
       });
     };
   }, [isLoginPage]);
+  const isRTL = i18n.dir() === "rtl";
 
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 w-full min-h-screen mt-12 items-center justify-center px-2 sm:px-4 bg-transparent",
+        "flex flex-col gap-4 sm:gap-6 w-full min-h-screen pt-4 sm:pt-8 md:pt-12 lg:pt-16 pb-8 items-center justify-start px-4 sm:px-6 md:px-8 lg:px-12 bg-transparent",
         className
       )}
       {...props}>
-      <Card className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl fade-up p-2 sm:p-4 md:p-6 lg:p-8">
-        <CardHeader>
-          <CardTitle className="text-xl sm:text-2xl md:text-3xl">
+      <Card className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl fade-up p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+        <CardHeader className="space-y-2 sm:space-y-3 md:space-y-4 pb-4 sm:pb-6">
+          <CardTitle className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-center">
             {t("create_blog.title")}
           </CardTitle>
-          <CardDescription className="text-sm md:text-base">
+          <CardDescription className="text-sm sm:text-base md:text-lg text-center text-muted-foreground">
             {t("create_blog.form_description")}
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="name">{t('create_blog.name')}</Label>
+        <CardContent className="space-y-4 sm:space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <div className="grid gap-4 sm:gap-6">
+              <div className="grid gap-2 sm:gap-3">
+                <Label htmlFor="name" className="text-sm sm:text-base font-medium">{t('create_blog.name')}</Label>
                 <Input
                   id="name"
                   type="name"
@@ -167,15 +169,15 @@ function BlogForm({
                   name="name"
                   value={blogData.name}
                   onChange={handleInputChange}
-                  className="fade-up"
+                  className="fade-up h-10 sm:h-11 md:h-12 text-sm sm:text-base"
                   autoComplete="name"
                   autoFocus
                   autoCorrect="off"
                   autoCapitalize="off"
                 />
               </div>
-              <div className="grid gap-2">
-                <Label htmlFor="ar_name">{t('create_blog.ar_name')}</Label>
+              <div className="grid gap-2 sm:gap-3">
+                <Label htmlFor="ar_name" className="text-sm sm:text-base font-medium">{t('create_blog.ar_name')}</Label>
                 <Input
                   id="ar_name"
                   type="ar_name"
@@ -184,55 +186,97 @@ function BlogForm({
                   name="ar_name"
                   value={blogData.ar_name}
                   onChange={handleInputChange}
-                  className="fade-up"
+                  className="fade-up h-10 sm:h-11 md:h-12 text-sm sm:text-base"
                   autoComplete="ar_name"
-                  autoFocus
                   autoCorrect="off"
                   autoCapitalize="off"
                 />
               </div>
-              <div className="grid gap-2">
-                <Label htmlFor="description"> 
+              <div className="grid gap-2 sm:gap-3">
+                <Label htmlFor="description" className="text-sm sm:text-base font-medium"> 
                   {t('create_blog.description')}
                 </Label>
-                <Input
-                  id="description"
-                  required
-                  name="description"
-                  value={blogData.description}
-                  onChange={handleInputChange}
-                  className="fade-up pr-10"
-                  autoComplete="current-description"
-                  autoCorrect="off"
-                  autoCapitalize="off"
-                  placeholder={
-                    t('create_blog.description_placeholder')}
-                /> 
+                 <MdEditor
+                 value={blogData.description}
+                  direction={isRTL ? "rtl" : "ltr"}
+                  onChange={(value) => {
+                    setblogData((prevData) => ({
+                      ...prevData,
+                      description: value || "",
+                    }));
+                  }}
+                  id={"description_ar"}
+                  preview="edit"
+                  style={{
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                    fontSize: "14px",
+                    backgroundColor: "#fff",
+                    color: "#000",
+                  }}
+                   
+                  height={250}
+                  textareaProps={{
+                    placeholder: t("create_blog.description_placeholder"),
+                    required: true,
+                    style: {
+                      direction: isRTL ? "rtl" : "ltr",
+                      textAlign: isRTL ? "right" : "left",
+                      fontSize: "14px",
+                      padding: "12px",
+                    },
+                  }}
+                  previewOptions={{
+                    disallowedElements: ["style"],
+                  }}
+                />
+              
               </div>
-              <div className="grid gap-2">
-                <Label htmlFor="ar-description"> {
+              <div className="grid gap-2 sm:gap-3">
+                <Label htmlFor="ar-description" className="text-sm sm:text-base font-medium"> {
                   t('create_blog.ar_description')
                   }</Label>
-                <Input
-                  id="ar_description"
-                  required
-                  name="ar_description"
+                
+                <MdEditor
                   value={blogData.ar_description}
-                  onChange={handleInputChange}
-                  className="fade-up pr-10"
-                  autoComplete="current-ar_description"
-                  autoCorrect="off"
-                  autoCapitalize="off"
-                  placeholder={
-                    t('create_blog.ar_description_placeholder')
-                  }
-                /> 
+                  direction={isRTL ? "rtl" : "ltr"}
+                  onChange={(value) => {
+                    setblogData((prevData) => ({
+                      ...prevData,
+                      ar_description: value || "",
+                    }));
+                  }}
+                  id={"ar_description"}
+                  preview="edit"
+                  style={{
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                    fontSize: "14px",
+                    backgroundColor: "#fff",
+                    color: "#000",    
+                  }}
+                  
+                  height={250}
+                  textareaProps={{
+                    placeholder: t("create_blog.ar_description_placeholder"),
+                    required: true,
+                    style: {
+                      direction: isRTL ? "rtl" : "ltr",
+                      textAlign: isRTL ? "right" : "left",
+                      fontSize: "14px",
+                      padding: "12px",
+                    },
+                  }}
+                  previewOptions={{
+                    disallowedElements: ["style"],
+                  }}
+                />  
               </div>
           
               {/* upload image */}
-              <div className="grid w-full items-center gap-2.5">
+              <div className="grid w-full items-center gap-2 sm:gap-3">
  
-                <Label htmlFor="images">{
+                <Label htmlFor="images" className="text-sm sm:text-base font-medium">{
                   t('create_blog.images')
 }</Label>
                 <Input
@@ -250,20 +294,19 @@ function BlogForm({
                     }
                   }}
                   multiple
-                  className="fade-up"
+                  className="fade-up h-10 sm:h-11 md:h-12 text-sm sm:text-base file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/80"
                   autoComplete="images"
-                  autoFocus
                   autoCorrect="off"
                   autoCapitalize="off"
                   placeholder="اختر الصور"
                 />
                 <Button
                   type="submit"
-                  className={`w-full my-4 text-base md:text-lg ${
+                  className={`w-full mt-4 sm:mt-6 h-11 sm:h-12 md:h-13 text-sm sm:text-base md:text-lg font-medium ${
                     issa
                       ? "bg-secondary-foreground dark:bg-secondary "
-                      : "bg-primary"
-                  }`}
+                      : "bg-primary hover:bg-primary/90"
+                  } transition-colors duration-200`}
                   disabled={issa}>
                   {issa
                     ? t("create_blog.saving_blog")
