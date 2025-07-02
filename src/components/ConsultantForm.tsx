@@ -34,9 +34,11 @@ function ConsultantForm({
     ar_description: "",
     specialization: "",
     experience_years: 0,
+    ar_education: "",
     email: "",
     phone: "",
     linkedin: "",
+    education:'',
     certifications: [] as string[],
     languages: [] as string[],
     images: [] as File[]
@@ -48,7 +50,23 @@ function ConsultantForm({
   ];
 
   const availableCertifications = [
-    "PMP", "MBA", "CPA", "ISO 9001", "Six Sigma", "ITIL", "Scrum Master", "PMI-ACP", "CISSP", "AWS Certified"
+    "PMP", 
+    "MBA", 
+    "CPA", 
+    "Certified Strategy & Business Planning Professional",
+    "Certified Balance Score Card Management System Professional",
+    "ISO 9001", 
+    "Six Sigma", 
+    "ITIL", 
+    "Scrum Master", 
+    "PMI-ACP", 
+    "CISSP", 
+    "AWS Certified",
+    "KPI",
+    "Change Management Leadership, Innovation & Strategy Program – GE",
+    "CIPD",
+    "IPMA-HR",
+    "Insurance Foundation Diploma (Institute of Banking, Riyadh)"
   ];
 
   const { data: consultant } = useQuery(
@@ -88,6 +106,8 @@ function ConsultantForm({
         email: consultant.email || "",
         phone: consultant.phone || "",
         linkedin: consultant.linkedin || "",
+        education: consultant.education || "",
+        ar_education: consultant.ar_education || "",
         certifications: consultant.certifications || [],
         languages: consultant.languages || [],
         images: consultant.image ? [
@@ -106,6 +126,7 @@ function ConsultantForm({
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
+
     mutationFn: async (consultantData: { 
       name: string; 
       ar_name: string; 
@@ -115,6 +136,8 @@ function ConsultantForm({
       experience_years: number;
       email: string;
       phone: string;
+       education?: string;
+       ar_education?: string;
       linkedin: string;
       certifications: string[];
       languages: string[];
@@ -131,6 +154,8 @@ function ConsultantForm({
       formData.append("email", consultantData.email);
       formData.append("phone", consultantData.phone);
       formData.append("linkedin", consultantData.linkedin);
+      formData.append("education", consultantData.education || "");
+      formData.append("ar_education", consultantData.ar_education || "");
       formData.append("certifications", JSON.stringify(consultantData.certifications));
       formData.append("languages", JSON.stringify(consultantData.languages));
 
@@ -403,6 +428,30 @@ function ConsultantForm({
                   onChange={handleInputChange}
                   className="fade-up min-h-[100px]"
                   placeholder={t('create_consultant.ar_description_placeholder')}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="education">{t('create_consultant.education')}</Label>
+                <Textarea
+                  id="education"
+                  required
+                  name="education"
+                  value={consultantData.education}
+                  onChange={handleInputChange}
+                  className="fade-up min-h-[100px]"
+                  placeholder={t('create_consultant.education_placeholder')}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="education">{t('create_consultant.ar_education')}</Label>
+                <Textarea
+                  id="ar_education"
+                  required
+                  name="ar_education"
+                  value={consultantData.ar_education}
+                  onChange={handleInputChange}
+                  className="fade-up min-h-[100px]"
+                  placeholder={t('create_consultant.ar_education_placeholder')}
                 />
               </div>
 

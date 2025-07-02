@@ -38,7 +38,7 @@ const Layout = ({ children }: LayoutProps) => {
     }
     // If authenticated and on login page, redirect to dashboard
     if (value && value !== "" && currentPath === "/login") {
-      navigate("/admin/consultant", { replace: true });
+      navigate("/admin/consultants", { replace: true });
     }
   }, [value, isAdminPath, currentPath, navigate]);
 

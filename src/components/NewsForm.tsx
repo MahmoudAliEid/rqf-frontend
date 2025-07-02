@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
-import { useMutation,useQueryClient  } from "@tanstack/react-query";
+import { useMutation,useQueryClient, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -19,7 +19,7 @@ import MdEditor from "@uiw/react-md-editor";
 function BlogForm({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+}: React.ComponentPropsWithoutRef<"div"> & { id?: string }) {
   const location = useLocation();
   const [isLoginPage, setIsLoginPage] = useState(false);
   const [issa, setIsSubmitting] = useState(false);
@@ -32,6 +32,47 @@ function BlogForm({
     categoryId: "",
     images: [] as File[]
   });
+
+  const { data: blog } = useQuery(
+    props.id
+      ? {
+          queryKey: ["blog", props.id],
+          queryFn: async () => {
+            const response = await fetch(
+              `${import.meta.env.VITE_BACKEND_URL}/api/blog/${props.id}`,
+              {
+                method: "GET",
+              }
+            );
+            if (!response.ok) {
+              throw new Error(`${t("edit_blog.error")}`);
+            }
+            return response.json();
+          },
+          enabled: !!props.id,
+        }
+      : {
+          queryKey: ["blog", null],
+          queryFn: async () => null,
+          enabled: false,
+        }
+  );
+
+  useEffect(() => {
+    if (blog && props.id) {
+      setblogData({
+        name: blog.title || "",
+        description: blog.content || "",
+        ar_name: blog.ar_title || "",
+        ar_description: blog.ar_content || "",
+        categoryId: blog.categoryId || "",
+        images: blog.image ? [
+          // Convert image URL to File object placeholder
+          new File([], blog.image.split("/").pop() || "image.jpg", { type: "image/jpeg" })
+        ] : [],
+      });
+    }
+  }, [blog, props.id]);
 
 
   
@@ -56,35 +97,40 @@ function BlogForm({
 
         console.log('form data', formData)
         
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/create-blog`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const url = props.id
+        ? `${import.meta.env.VITE_BACKEND_URL}/api/blog/${props.id}`
+        : `${import.meta.env.VITE_BACKEND_URL}/api/create-blog`;
+
+      const method = props.id ? "PUT" : "POST";
+        
+      const response = await fetch(url, {
+        method,
+        body: formData,
+      });
       if (!response.ok) {
-        throw new Error(`{t("create_blog.error")}`);
+        throw new Error(`${props.id ? t("edit_blog.error") : t("create_blog.error")}`);
       }
       return response.json();
     },
     onSuccess: () => {
       setTimeout(() => {
-        queryClient.invalidateQueries({ queryKey: ["blogs"] }).then(() => {
-          toast({
-            title: "نجاح",
-            description: `${t("create_blog.success")}`,
-            variant: "default",
-          });
-          navigate("/admin/news");
+        queryClient.invalidateQueries({ queryKey: ["blogs"] });
+        if (props.id) {
+          queryClient.invalidateQueries({ queryKey: ["blog", props.id] });
+        }
+        toast({
+          title: "نجاح",
+          description: `${props.id ? t("edit_blog.success") : t("create_blog.success")}`,
+          variant: "default",
         });
-      }, 3000);
+        navigate("/admin/news");
+      }, 1000);
     },
     onError: () => {
       setIsSubmitting(false);
       toast({
         title: "خطأ",
-        description: `${t("create_blog.error")}`,
+        description: `${props.id ? t("edit_blog.error") : t("create_blog.error")}`,
         variant: "destructive",
       });
     },
@@ -150,10 +196,10 @@ function BlogForm({
       <Card className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl fade-up p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
         <CardHeader className="space-y-2 sm:space-y-3 md:space-y-4 pb-4 sm:pb-6">
           <CardTitle className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-center">
-            {t("create_blog.title")}
+            {props.id ? t("edit_blog.title") : t("create_blog.title")}
           </CardTitle>
           <CardDescription className="text-sm sm:text-base md:text-lg text-center text-muted-foreground">
-            {t("create_blog.form_description")}
+            {props.id ? t("edit_blog.form_description") : t("create_blog.form_description")}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4 sm:space-y-6">
@@ -309,8 +355,8 @@ function BlogForm({
                   } transition-colors duration-200`}
                   disabled={issa}>
                   {issa
-                    ? t("create_blog.saving_blog")
-                    : t("create_blog.save_new_blog")
+                    ? (props.id ? t("edit_blog.updating_blog") : t("create_blog.saving_blog"))
+                    : (props.id ? t("edit_blog.update_blog") : t("create_blog.save_new_blog"))
                   }
                 </Button>
               </div>

@@ -179,6 +179,10 @@ const resources = {
         "error": "Error creating consultant",
         "image": "Image",
         "images": "Profile Image",
+        "education": "Education",
+        "education_placeholder": "e.g., MBA, PhD in Management",
+        "ar_education": "Arabic Education",
+        "ar_education_placeholder": "e.g., ماجستير إدارة الأعمال، دكتوراه في الإدارة",
       },
       "edit_consultant": {
         "title": "Edit Consultant",
@@ -645,6 +649,10 @@ const resources = {
           "error": "حدث خطأ أثناء تسجيل المستشار",
           "image": "صورة",
           "images": "صورة الملف الشخصي",
+          "education": "التعليم",
+          "ar_education": "التعليم بالعربية",
+          "education_placeholder": "مثل: ماجستير إدارة الأعمال، دكتوراه في الإدارة",
+          "ar_education_placeholder": "التعليم باللغة العربية",
         },
 
         "edit_consultant": {

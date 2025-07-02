@@ -60,7 +60,7 @@ function LoginForm({
       setIsSubmitting(false);
       console.log(data,"from login")
 
-      navigate("/admin/upload");
+      navigate("/admin/consultants");
       setValue(data.user.token);
     },
     onError: () => {

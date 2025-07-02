@@ -178,7 +178,7 @@ const Header = () => {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: (navItems.length + 1) * 0.1 }}>
-                    <Link to="/admin/consultant">
+                    <Link to="/admin/consultants">
                       <Button className="w-full bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 text-white shadow-lg transition-transform duration-300 hover:shadow-2xl border-0">
                         <LayoutDashboardIcon className="h-4 w-4 drop-shadow-glow" />
                         <span className="font-bold tracking-wide drop-shadow-glow">

@@ -20,6 +20,7 @@ import {
   X
 } from 'lucide-react';
 
+
 interface Consultant {
   id: string;
   name: string;
@@ -33,6 +34,8 @@ interface Consultant {
   phone?: string;
   linkedin?: string;
   certifications?: string[];
+  education?: string;
+  ar_education?: string;
   languages?: string[];
   created_at: string;
   updated_at: string;
@@ -79,6 +82,8 @@ const OurTeam: React.FC = () => {
             phone: '+966 79 1234567',
             linkedin: 'https://linkedin.com/in/ahmed-rashid',
             certifications: ['PMP', 'Six Sigma Black Belt', 'Certified Management Consultant'],
+            education: 'PhD in Strategic Management, MBA in Business Administration',
+            ar_education: 'دكتوراه في الإدارة الاستراتيجية، ماجستير إدارة الأعمال',
             languages: ['Arabic', 'English', 'French'],
             created_at: '2024-01-01',
             updated_at: '2024-01-01'
@@ -96,6 +101,8 @@ const OurTeam: React.FC = () => {
             phone: '+966 79 2345678',
             linkedin: 'https://linkedin.com/in/sarah-johnson',
             certifications: ['TOGAF', 'ITIL', 'Agile Certified Practitioner'],
+            education: 'Master of Information Technology, Bachelor of Computer Science',
+            ar_education: 'ماجستير تقنية المعلومات، بكالوريوس علوم الحاسب',
             languages: ['English', 'Arabic', 'German'],
             created_at: '2024-01-01',
             updated_at: '2024-01-01'
@@ -113,6 +120,8 @@ const OurTeam: React.FC = () => {
             phone: '+966 79 3456789',
             linkedin: 'https://linkedin.com/in/mohammad-hassan',
             certifications: ['Lean Six Sigma', 'Business Process Management', 'ISO 9001 Lead Auditor'],
+            education: 'MBA in Operations Management, Bachelor of Industrial Engineering',
+            ar_education: 'ماجستير إدارة العمليات، بكالوريوس الهندسة الصناعية',
             languages: ['Arabic', 'English'],
             created_at: '2024-01-01',
             updated_at: '2024-01-01'
@@ -130,6 +139,8 @@ const OurTeam: React.FC = () => {
             phone: '+966 79 4567890',
             linkedin: 'https://linkedin.com/in/fatima-alzahra',
             certifications: ['Certified Executive Coach', 'Change Management', 'Leadership Development'],
+            education: 'PhD in Organizational Psychology, Master of Human Resources',
+            ar_education: 'دكتوراه في علم النفس التنظيمي، ماجستير الموارد البشرية',
             languages: ['Arabic', 'English', 'Spanish'],
             created_at: '2024-01-01',
             updated_at: '2024-01-01'
@@ -147,6 +158,8 @@ const OurTeam: React.FC = () => {
             phone: '+966 79 5678901',
             linkedin: 'https://linkedin.com/in/khalid-mansouri',
             certifications: ['SFDA Certified', 'Medical Device Regulation', 'Quality Assurance'],
+            education: 'Doctor of Pharmacy, Master of Regulatory Affairs',
+            ar_education: 'دكتوراه في الصيدلة، ماجستير الشؤون التنظيمية',
             languages: ['Arabic', 'English'],
             created_at: '2024-01-01',  
             updated_at: '2024-01-01'
@@ -164,6 +177,8 @@ const OurTeam: React.FC = () => {
             phone: '+966 79 6789012',
             linkedin: 'https://linkedin.com/in/layla-abdulrahman',
             certifications: ['SHRM-CP', 'Organizational Psychology', 'Leadership Development'],
+            education: 'Master of Human Resources Management, Bachelor of Psychology',
+            ar_education: 'ماجستير إدارة الموارد البشرية، بكالوريوس علم النفس',
             languages: ['Arabic', 'English', 'French'],
             created_at: '2024-01-01',
             updated_at: '2024-01-01'
@@ -217,9 +232,29 @@ const OurTeam: React.FC = () => {
     setSelectedField('all');
   };
 
-  const uniqueSpecializations = Array.from(
-    new Set(consultants.map(c => c.specialization).filter(Boolean))
-  );
+  // const uniqueSpecializations = Array.from(
+  //   new Set(consultants.map(c => c.specialization).filter(Boolean))
+  // );
+
+  const {data:uniqueSpecializations}=useQuery({
+    queryKey: ['uniqueSpecializations'],
+    queryFn: async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/specializations`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch unique specializations');
+        }
+        const data = await response.json();
+        return data || [];
+      } catch (err) {
+        console.error('Error fetching unique specializations:', err);
+        return [];
+      }
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    retry: 2,
+    retryDelay: 1000,
+  });
 
   if (loading) {
     return (
@@ -289,9 +324,12 @@ const OurTeam: React.FC = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">{t('our_team.all_fields')}</SelectItem>
-                {uniqueSpecializations.map((spec) => (
-                  <SelectItem key={spec} value={spec || ''}>{spec}</SelectItem>
-                ))}
+                {uniqueSpecializations &&
+                  (uniqueSpecializations as string[]).map((spec: string) => (
+                  spec ? (
+                    <SelectItem key={spec} value={spec}>{spec}</SelectItem>
+                  ) : null
+                  ))}
               </SelectContent>
             </Select>
 
@@ -367,6 +405,15 @@ const OurTeam: React.FC = () => {
                         </span>
                       )}
                     </div>
+
+                    {consultant.education && (
+                      <div className="text-sm text-gray-600">
+                        <p className="font-medium text-gray-700 mb-1">{t('our_team.education')}:</p>
+                        <p className="leading-relaxed">
+                          {isArabic ? consultant.ar_education || consultant.education : consultant.education}
+                        </p>
+                      </div>
+                    )}
 
                     {consultant.certifications && consultant.certifications.length > 0 && (
                       <div className="flex flex-wrap gap-1">
@@ -453,6 +500,7 @@ const OurTeam: React.FC = () => {
             >
               <Mail className="w-5 h-5 mr-2 ml-2" />
               {t('contact')}
+
             </Button>
             
             <Button 

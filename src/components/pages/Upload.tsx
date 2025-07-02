@@ -63,7 +63,7 @@ export function Upload({
             description: "تم رفع الصور بنجاح",
             variant: "default",
           });
-          navigate("/admin/consultant");
+          navigate("/admin/consultants");
         });
       }, 3000);
     },
