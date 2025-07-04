@@ -1,29 +1,42 @@
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Flower, Droplets, Sprout } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { motion } from "framer-motion";
+import { ArrowUpRight, Flower, Droplets, Sprout } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const services = [
   {
-    title: 'خدمات صيانة الحدائق الدورية',
-    description: 'نوفر عقود صيانة دورية للحفاظ على جمال الحدائق المنفذة، تشمل متابعة مستمرة، ومعالجة أي مشاكل كالحشرات أو التلف مع ضمان كامل للمزروعات حسب نوع العقد ومدته، يُستثنى من الضمان انقطاع الري.',
+    title: "خدمات صيانة الحدائق الدورية",
+    description:
+      "نوفر عقود صيانة دورية للحفاظ على جمال الحدائق المنفذة، تشمل متابعة مستمرة، ومعالجة أي مشاكل كالحشرات أو التلف مع ضمان كامل للمزروعات حسب نوع العقد ومدته، يُستثنى من الضمان انقطاع الري.",
     icon: <Sprout className="h-6 w-6" />,
-    color: 'bg-green-500/10 text-green-500',
-    image: 'https://images.pexels.com/photos/2132252/pexels-photo-2132252.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    color: "bg-green-500/10 text-green-500",
+    image:
+      "https://images.pexels.com/photos/2132252/pexels-photo-2132252.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
-    title: 'خدمات تنسيق الورود والاحتفالات',
-    description: 'بلون الزمرد الخلاب ورونق الورود الجذابة، نجهز احتفالاتكم ونقوم بتغليف الهدايا وتنسيق المناسبات للفنادق والشركات من خلال باقات ورد مميزة تعد على يد منسقين محترفين وبأعلى جودة وإتقان.',
+    title: "خدمات تنسيق الورود والاحتفالات",
+    description:
+      "بلون الزمرد الخلاب ورونق الورود الجذابة، نجهز احتفالاتكم ونقوم بتغليف الهدايا وتنسيق المناسبات للفنادق والشركات من خلال باقات ورد مميزة تعد على يد منسقين محترفين وبأعلى جودة وإتقان.",
     icon: <Flower className="h-6 w-6" />,
-    color: 'bg-purple-500/10 text-purple-500',
-    image: 'https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    color: "bg-purple-500/10 text-purple-500",
+    image:
+      "https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
-    title: 'تركيب جميع أنواع شبكات الري',
-    description: 'تركيب شبكات الري الاتوماتيك والعادي وزراعة الأسطح بنظام الهيدروبونيك لتوفير ٩٠٪ من المياة.',
+    title: "تركيب جميع أنواع شبكات الري",
+    description:
+      "تركيب شبكات الري الاتوماتيك والعادي وزراعة الأسطح بنظام الهيدروبونيك لتوفير ٩٠٪ من المياة.",
     icon: <Droplets className="h-6 w-6" />,
-    color: 'bg-blue-500/10 text-blue-500',
-    image: 'https://images.pexels.com/photos/358572/pexels-photo-358572.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-  }
+    color: "bg-blue-500/10 text-blue-500",
+    image:
+      "https://images.pexels.com/photos/358572/pexels-photo-358572.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  },
 ];
 
 const container = {
@@ -31,19 +44,22 @@ const container = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2
-    }
-  }
+      staggerChildren: 0.2,
+    },
+  },
 };
 
 const item = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
 const Services = () => {
   return (
-    <section id="services" className="section-padding bg-secondary/30 dark:bg-secondary/5">
+    <section
+      id="services"
+      className="section-padding bg-secondary/30 dark:bg-secondary/5"
+    >
       <div className="container-custom">
         <div className="mb-12 text-center">
           <motion.h2
@@ -62,7 +78,8 @@ const Services = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground"
           >
-            نقدم مجموعة متكاملة من الخدمات الزراعية عالية الجودة لتلبية احتياجات عملائنا
+            نقدم مجموعة متكاملة من الخدمات الاستشارية الإدارية عالية الجودة
+            لتلبية احتياجات عملائنا
           </motion.p>
         </div>
 
@@ -92,10 +109,8 @@ const Services = () => {
                 <CardHeader>
                   <CardTitle>{service.title}</CardTitle>
                 </CardHeader>
-                <CardContent  className="text-base leading-relaxed h-[120px] w-full">
-                  <CardDescription>
-                    {service.description}
-                  </CardDescription>
+                <CardContent className="text-base leading-relaxed h-[120px] w-full">
+                  <CardDescription>{service.description}</CardDescription>
                 </CardContent>
                 <CardFooter>
                   <a

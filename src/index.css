@@ -4,6 +4,7 @@
 @tailwind utilities;
 
 
+
 :root {
   --background: 0 0% 100%;
   --foreground: 0 0% 3.9%;
@@ -11,34 +12,27 @@
   --card-foreground: 0 0% 3.9%;
   --popover: 0 0% 100%;
   --popover-foreground: 0 0% 3.9%;
-  
-  /* 🔴 Red (danger) replaces green */
-  --primary: 356 91% 46%;
+  /* Ragaf logo blue/teal theme */
+  --primary: 187 60% 38%; /* main blue/teal from logo */
   --primary-foreground: 0 0% 98%;
-  
-  --secondary: 0 0% 96%;
-  --secondary-foreground: 0 0% 9%;
-  
+  --secondary: 187 30% 90%; /* light blue/teal background */
+  --secondary-foreground: 187 60% 38%;
   --muted: 0 0% 96.1%;
   --muted-foreground: 0 0% 45.1%;
-  
-  --destructive: 0 84.2% 60.2%;
+  --destructive: 356 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
-
-  --border: 0 0% 89.8%;
-  --input: 0 0% 89.8%;
-
-  --ring: 356 91% 46%; /* نفس لون الـ primary الأحمر */
-
+  --border: 187 60% 85%;
+  --input: 187 60% 85%;
+  --ring: 187 60% 38%;
   --radius: 0.5rem;
-
-  /* 🔴 درجات الأحمر */
-  --danger: 356 91% 46%;
-  --danger-light: 356 90% 60%;
-  --danger-lighter: 356 90% 75%;
-  --danger-dark: 356 91% 35%;
-  --danger-darker: 356 91% 25%;
-  --danger-foreground: 0 0% 98%;
+  /* Accent and chart colors from logo palette */
+  --accent: 187 60% 50%;
+  --accent-foreground: 0 0% 98%;
+  --chart-1: 187 60% 38%;
+  --chart-2: 187 60% 50%;
+  --chart-3: 187 30% 70%;
+  --chart-4: 0 0% 60%;
+  --chart-5: 0 0% 30%;
 }
 
 

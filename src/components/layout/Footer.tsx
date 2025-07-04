@@ -9,10 +9,10 @@ const Footer = () => {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           {/* Logo and About */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center py-1 gap-2">
               <img
                 security="true"
-                src="/logo_professionals.png"
+                src="/Ragaf-logo.png"
                 alt="الشعار"
                 className="h-32 w-h-32 object-cover"
               />
@@ -161,7 +161,8 @@ const Footer = () => {
 
         <div className="flex flex-col items-center justify-between gap-1 py-6 text-center md:flex-row md:text-right">
           <p className="text-muted-foreground">
-            &copy; {currentYear} شركة المحترفون الزراعية. جميع الحقوق محفوظة.
+            &copy; {currentYear} شركة رقف للاستشارات الإدارية. جميع الحقوق
+            محفوظة.
           </p>
           <p className="text-sm text-muted-foreground">
             تصميم وتطوير بواسطة{" "}
