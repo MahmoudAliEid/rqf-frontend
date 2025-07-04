@@ -9,7 +9,7 @@ const navItems = [
   { name: "الرئيسية", href: "/#home" },
   { name: "من نحن", href: "/#about" },
   { name: "خدماتنا", href: "/#services" },
-  { name: "أعمالنا", href: "/#projects" },
+  { name: "فريقنا", href: "/#team" },
   { name: "لماذا نحن", href: "/#why-us" },
   { name: "اتصل بنا", href: "/#contact" },
 ];
@@ -97,7 +97,7 @@ const Header = () => {
           {valueToken ? (
             <Link to="/admin/consultants">
               <Button
-                className="hidden md:flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 text-white shadow-lg transition-transform duration-300 hover:shadow-2xl border-0"
+                className="hidden md:flex items-center gap-2 bg-primary text-primary-foreground shadow-lg transition-transform duration-300 hover:shadow-2xl border-0"
                 style={{
                   backgroundClip: "border-box",
                   boxShadow: "0 4px 24px 0 rgba(120, 36, 255, 0.2)",

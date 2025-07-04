@@ -10,7 +10,8 @@ import { Link } from "react-router-dom";
 const navItems = [
   { name: "home", href: "/#home" },
   { name: "about", href: "/#about" },
-  { name: "products", href: "/#services" },
+  { name: "services", href: "/#services" },
+  { name: "team", href: "/#team" },
   { name: "contact", href: "/#contact" },
 ];
 

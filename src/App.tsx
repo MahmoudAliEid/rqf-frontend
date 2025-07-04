@@ -10,10 +10,7 @@ import Layout from "./components/layout/Layout";
 import WhatsUp from "./components/ui/whats-up";
 import { AuthWrapper } from "./hooks/Auth";
 
-
 function App() {
-
-
   const queryClient = new QueryClient();
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,16 +34,15 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-   
-        <AnimatedCursor />
-        <Layout >
-          <AuthWrapper>
-            <AppRouter />
-          </AuthWrapper>
-        </Layout>
-        <WhatsUp />
-        <ScrollToTop />
-        <Toaster />
+      <AnimatedCursor />
+      <Layout>
+        <AuthWrapper>
+          <AppRouter />
+        </AuthWrapper>
+      </Layout>
+      <WhatsUp />
+      <ScrollToTop />
+      <Toaster />
     </QueryClientProvider>
   );
 }

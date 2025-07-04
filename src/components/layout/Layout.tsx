@@ -7,7 +7,6 @@ import { I18nextProvider } from "react-i18next";
 import i18next from "@/utils/i18n";
 import Navbar from "./Navbar";
 
-
 interface LayoutProps {
   children: ReactNode;
 }
@@ -18,9 +17,8 @@ const Layout = ({ children }: LayoutProps) => {
   const currentPath = location.pathname;
   const isAdminPath = currentPath.startsWith("/admin");
   const [value] = useLocalStorage("token", "");
-   const [lang,setLang] = useLocalStorage("lang", "ar"); // Default to Arabic
+  const [lang, setLang] = useLocalStorage("lang", "ar"); // Default to Arabic
   useEffect(() => {
-    
     if (lang === "ar") {
       document.documentElement.setAttribute("dir", "rtl");
     } else {
@@ -54,22 +52,18 @@ const Layout = ({ children }: LayoutProps) => {
     return () => {
       i18next.off("languageChanged", handleLanguageChanged);
     };
-  }, [
-    setLang,
-  ]);
+  }, [setLang]);
 
   return (
-        <html lang={lang} dir={lang === "ar" ? "rtl" : "ltr"}>
-
-          <I18nextProvider i18n={i18next}>
-    <div className="flex min-h-screen flex-col">
-      {value && isAdminPath ? <AdminHeader /> : <Navbar />}
-      <main className="flex-grow">{children}</main>
-      {value && isAdminPath ? null : <Footer />}
-    </div>
-    </I18nextProvider>
-        </html>
-
+    <html lang={lang} dir={lang === "ar" ? "rtl" : "ltr"}>
+      <I18nextProvider i18n={i18next}>
+        <div className="flex min-h-screen flex-col">
+          {value && isAdminPath ? <AdminHeader /> : <Navbar />}
+          <main className="flex-grow">{children}</main>
+          {value && isAdminPath ? null : <Footer />}
+        </div>
+      </I18nextProvider>
+    </html>
   );
 };
 

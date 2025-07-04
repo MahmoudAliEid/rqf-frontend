@@ -1,25 +1,36 @@
 import { ArrowUpRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
 
-  return (
-    <footer className="relative bg-secondary/50 pt-16 dark:bg-secondary/10">
+           <p className="text-muted-foreground">
+            &copy; {currentYear} {t("footer.rights")}
+          </p>
+          <p className="text-sm text-muted-foreground">
+            {t("footer.design")}{" "}
+            <a
+              href="https://shimaamohmed.bio.link/"
+              className="font-medium text-primary hover:underline"
+            >
+              SM
+            </a>
+          </p>  <footer className="relative bg-secondary/50 pt-16 dark:bg-secondary/10">
       <div className="container-custom">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo and About */}
           <div className="space-y-4">
             <div className="flex items-center py-1 gap-2">
               <img
-                security="true"
                 src="/Ragaf-logo.png"
-                alt="الشعار"
-                className="h-32 w-h-32 object-cover"
+                alt="شركة رقف للاستشارات الإدارية"
+                className="h-20 object-contain drop-shadow-md"
+                style={{ maxWidth: 120 }}
               />
             </div>
             <p className="text-muted-foreground">
-              نقدم خدمات متكاملة في تصميم وتنسيق وصيانة الحدائق وتركيب شبكات
-              الري وتنسيق الزهور للمناسبات بأعلى معايير الجودة.
+              {t("footer.about")}
             </p>
             {/* <div className="flex gap-4">
               <a
@@ -48,7 +59,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="mb-4 text-xl font-bold">روابط سريعة</h4>
+            <h4 className="mb-4 text-xl font-bold">{t("footer.fastlink.title")}</h4>
             <ul className="space-y-2">
               <li>
                 <a
@@ -56,7 +67,7 @@ const Footer = () => {
                   className="inline-flex items-center text-muted-foreground hover:text-primary"
                 >
                   <ArrowUpRight className="ml-1 h-4 w-4" />
-                  الرئيسية
+                  {t("footer.fastlink.home")}
                 </a>
               </li>
               <li>
@@ -65,7 +76,7 @@ const Footer = () => {
                   className="inline-flex items-center text-muted-foreground hover:text-primary"
                 >
                   <ArrowUpRight className="ml-1 h-4 w-4" />
-                  من نحن
+                  {t("footer.fastlink.about")}
                 </a>
               </li>
               <li>
@@ -74,16 +85,25 @@ const Footer = () => {
                   className="inline-flex items-center text-muted-foreground hover:text-primary"
                 >
                   <ArrowUpRight className="ml-1 h-4 w-4" />
-                  خدماتنا
+                  {t("footer.fastlink.services")}
                 </a>
               </li>
               <li>
                 <a
-                  href="#projects"
+                  href="#team"
                   className="inline-flex items-center text-muted-foreground hover:text-primary"
                 >
                   <ArrowUpRight className="ml-1 h-4 w-4" />
-                  أعمالنا
+                  {t("footer.fastlink.team")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#testimonials"
+                  className="inline-flex items-center text-muted-foreground hover:text-primary"
+                >
+                  <ArrowUpRight className="ml-1 h-4 w-4" />
+                  {t("footer.fastlink.testimonials")}
                 </a>
               </li>
               <li>
@@ -92,7 +112,7 @@ const Footer = () => {
                   className="inline-flex items-center text-muted-foreground hover:text-primary"
                 >
                   <ArrowUpRight className="ml-1 h-4 w-4" />
-                  اتصل بنا
+                  {t("footer.fastlink.contact")}
                 </a>
               </li>
             </ul>
@@ -100,7 +120,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="mb-4 text-xl font-bold">خدماتنا</h4>
+            <h4 className="mb-4 text-xl font-bold">{t("footer.services.title")}</h4>
             <ul className="space-y-2">
               <li>
                 <a
@@ -108,7 +128,7 @@ const Footer = () => {
                   className="inline-flex items-center text-muted-foreground hover:text-primary"
                 >
                   <ArrowUpRight className="ml-1 h-4 w-4" />
-                  صيانة الحدائق
+                  {t("footer.services.strategic_consulting")}
                 </a>
               </li>
               <li>
@@ -117,7 +137,7 @@ const Footer = () => {
                   className="inline-flex items-center text-muted-foreground hover:text-primary"
                 >
                   <ArrowUpRight className="ml-1 h-4 w-4" />
-                  تنسيق الورود والاحتفالات
+                  {t("footer.services.business_development")}
                 </a>
               </li>
               <li>
@@ -126,7 +146,7 @@ const Footer = () => {
                   className="inline-flex items-center text-muted-foreground hover:text-primary"
                 >
                   <ArrowUpRight className="ml-1 h-4 w-4" />
-                  تركيب شبكات الري
+                  {t("footer.services.project_management")}
                 </a>
               </li>
               <li>
@@ -135,8 +155,44 @@ const Footer = () => {
                   className="inline-flex items-center text-muted-foreground hover:text-primary"
                 >
                   <ArrowUpRight className="ml-1 h-4 w-4" />
-                  تصميم الحدائق
+                  {t("footer.services.medical_licensing")}
                 </a>
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  className="inline-flex items-center text-muted-foreground hover:text-primary"
+                >
+                  <ArrowUpRight className="ml-1 h-4 w-4" />
+                  {t("footer.services.hr_development")}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Information */}
+          <div>
+            <h4 className="mb-4 text-xl font-bold">{t("footer.contact.title")}</h4>
+            <ul className="space-y-2">
+              <li className="text-muted-foreground">
+                <strong>{t("contact_us.form.email")}:</strong>
+                <br />
+                {t("footer.contact.email")}
+              </li>
+              <li className="text-muted-foreground">
+                <strong>{t("contact_us.form.phone")}:</strong>
+                <br />
+                {t("footer.contact.phone")}
+              </li>
+              <li className="text-muted-foreground">
+                <strong>العنوان:</strong>
+                <br />
+                {t("footer.contact.address")}
+              </li>
+              <li className="text-muted-foreground">
+                <strong>ساعات العمل:</strong>
+                <br />
+                {t("footer.contact.time")}
               </li>
             </ul>
           </div>
