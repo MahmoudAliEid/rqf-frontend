@@ -11,6 +11,26 @@ const resources = {
       team: "Our Team",
       testimonials: "Testimonials",
 
+      nav: {
+        home: "Home",
+        about: "About Us",
+        services: "Our Services",
+        team: "Our Team",
+        why_us: "Why Us",
+        contact: "Contact Us"
+      },
+
+      auth: {
+        login: "Login",
+        logout: "Logout",
+        dashboard: "Dashboard"
+      },
+
+      common: {
+        open_menu: "Open Menu",
+        close_menu: "Close Menu"
+      },
+
       blog: "Blog",
       jobs: "Careers",
       viewmore: "View Details",
@@ -49,7 +69,7 @@ const resources = {
           contact: "Contact Us",
           services: "Services",
           team: "Our Team",
-          testimonials: "Testimonials",
+          
         },
         services: {
           title: "Our Services",
@@ -65,6 +85,8 @@ const resources = {
           phone: "+966 55 995 5773",
           address: "Riyadh, Floor 4, Unit 402 - Saudi Arabia",
           time: "Sunday to Thursday: 10:00 AM - 6:00 PM",
+          addressTitle: "Address",
+          timeTitle: "Working Hours",
         },
         rights: "All rights reserved to Ragaf Consulting Company",
         design: "Designed and developed by",
@@ -178,7 +200,7 @@ const resources = {
         email: "Email",
         email_placeholder: "consultant@example.com",
         phone: "Phone",
-        phone_placeholder: "+966 XX XXX XXXX",
+        phone_placeholder: "+966 55 995 5773",
         linkedin: "LinkedIn Profile",
         linkedin_placeholder: "https://linkedin.com/in/username",
         specialization: "Specialization",
@@ -541,6 +563,27 @@ const resources = {
       notfound1: "لا يوجد وظائف متاحة",
       search: "بحث",
       explore: "     اكتشف المزيد",
+      
+      nav: {
+        home: "الرئيسية",
+        about: "من نحن",
+        services: "خدماتنا",
+        team: "فريقنا",
+        why_us: "لماذا نحن",
+        contact: "اتصل بنا"
+      },
+
+      auth: {
+        login: "تسجيل الدخول",
+        logout: "تسجيل الخروج",
+        dashboard: "لوحة التحكم"
+      },
+
+      common: {
+        open_menu: "فتح القائمة",
+        close_menu: "إغلاق القائمة"
+      },
+
       hero: {
         welcome: "مرحبًا بكم في شركة رقف للاستشارات العليا في الإدارة",
         tagline: "شركاؤكم في النجاح",
@@ -582,17 +625,17 @@ const resources = {
           home: "الرئيسية",
           about: "من نحن",
           contact: "اتصل بنا",
-          blog: "المدونة",
-          jobs: "الوظائف",
-          products: "المنتجات",
+          services: "الخدمات",
+          team: "فريقنا",
+        
         },
-        branches: {
+        services: {
           title: "خدماتنا",
-          main: "الاستشارات الاستراتيجية",
-          branch1: "تطوير الأعمال",
-          branch2: "إدارة المشاريع",
-          branch3: "ترخيص الأجهزة الطبية",
-          branch4: "تطوير الموارد البشرية",
+          strategic_consulting: "الاستشارات الاستراتيجية",
+          business_development: "تطوير الأعمال",
+          project_management: "إدارة المشاريع",
+          medical_licensing: "ترخيص الأجهزة الطبية",
+          hr_development: "تطوير الموارد البشرية",
         },
         contact: {
           title: "تواصل معنا",
@@ -600,6 +643,8 @@ const resources = {
           phone: "+966 55 995 5773",
           address: "الرياض، الطابق الرابع، الوحدة 402 - السعودية",
           time: "من الأحد إلى الخميس: 10:00 صباحاً - 6:00 مساءً",
+          addressTitle: "العنوان",
+          timeTitle: "ساعات العمل",
         },
         rights: "جميع الحقوق محفوظة لدى شركة رقف للاستشارات الإدارية",
         design: "تصميم وتطوير بواسطة",
@@ -675,7 +720,7 @@ const resources = {
         email: "البريد الإلكتروني",
         email_placeholder: "consultant@example.com",
         phone: "رقم الهاتف",
-        phone_placeholder: "+966 XX XXX XXXX",
+        phone_placeholder: "+966 55 995 5773",
         linkedin: "الملف الشخصي على LinkedIn",
         linkedin_placeholder: "https://linkedin.com/in/username",
         specialization: "التخصص",
@@ -934,7 +979,7 @@ const resources = {
           email: "عنوان البريد الإلكتروني",
           email_placeholder: "your.email@example.com",
           phone: "رقم الهاتف",
-          phone_placeholder: "+966 50 123 4567",
+          phone_placeholder: "+966 55 995 5773",
           company: "اسم الشركة/المنظمة",
           company_placeholder: "اسم شركتك",
           subject: "الموضوع",
@@ -955,9 +1000,9 @@ const resources = {
         },
         info: {
           email: "info@ragafconsulting.com",
-          phone: "+966 11 123 4567",
+          phone: "+966 55 995 5773",
           address: "الرياض، المملكة العربية السعودية",
-          working_hours: "من الأحد إلى الخميس: 9:00 صباحاً - 6:00 مساءً",
+          working_hours: "من الأحد إلى الخميس: 10:00 صباحاً - 6:00 مساءً",
         },
       },
 
@@ -974,7 +1019,7 @@ const resources = {
           email: "عنوان البريد الإلكتروني",
           email_placeholder: "company@example.com",
           phone: "رقم الهاتف",
-          phone_placeholder: "+966 50 123 4567",
+          phone_placeholder: "+966 55 995 5773",
           device_type: "نوع الأجهزة الطبية",
           device_type_placeholder: "صف الأجهزة الطبية المطلوب ترخيصها",
           has_documents: "هل لديك المستندات والمواصفات الفنية؟",

@@ -24,7 +24,7 @@ const services = [
     description:
       "بلون الزمرد الخلاب ورونق الورود الجذابة، نجهز احتفالاتكم ونقوم بتغليف الهدايا وتنسيق المناسبات للفنادق والشركات من خلال باقات ورد مميزة تعد على يد منسقين محترفين وبأعلى جودة وإتقان.",
     icon: <Flower className="h-6 w-6" />,
-    color: "bg-purple-500/10 text-purple-500",
+    color: "bg-primary/10 text-primary",
     image:
       "https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
@@ -33,7 +33,7 @@ const services = [
     description:
       "تركيب شبكات الري الاتوماتيك والعادي وزراعة الأسطح بنظام الهيدروبونيك لتوفير ٩٠٪ من المياة.",
     icon: <Droplets className="h-6 w-6" />,
-    color: "bg-blue-500/10 text-blue-500",
+    color: "bg-primary/10 text-primary",
     image:
       "https://images.pexels.com/photos/358572/pexels-photo-358572.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
@@ -57,7 +57,7 @@ const item = {
 const Services = () => {
   return (
     <section
-      id="services"
+
       className="section-padding bg-secondary/30 dark:bg-secondary/5"
     >
       <div className="container-custom">

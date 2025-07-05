@@ -16,7 +16,7 @@ const useAuth = () =>
         } else if (token !== null && currentPath === "/login") {
             nav("/admin/consultants", { replace: true });
         }
-    }, []);
+    }, [isAdminPath, currentPath, nav]);
     return {isAuthenticated};
 }
 
@@ -34,7 +34,7 @@ const AuthWrapper= ({ children }: { children: React.ReactNode }) => {
         } else if (token !== null && currentPath === "/login") {
             nav("/admin/consultants", { replace: true });
         }
-    }, []);
+    }, [isAdminPath, currentPath, nav]);
     return <>{children}</>;
 }
 export { AuthWrapper };

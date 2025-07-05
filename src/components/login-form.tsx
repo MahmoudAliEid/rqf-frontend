@@ -27,7 +27,7 @@ function LoginForm({
     password: "",
   });
 
-  const [_, setValue] = useLocalStorage("token", "");
+  const [, setValue] = useLocalStorage("token", "");
 
   const { toast } = useToast();
   const navigate = useNavigate();

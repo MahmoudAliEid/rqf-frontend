@@ -258,7 +258,7 @@ const OurTeam: React.FC = () => {
 
   if (loading) {
     return (
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50" dir={isArabic ? 'rtl' : 'ltr'}>
+      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-primary/5" dir={isArabic ? 'rtl' : 'ltr'}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Skeleton className="h-8 w-32 mx-auto mb-4" />
@@ -288,11 +288,11 @@ const OurTeam: React.FC = () => {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50" dir={isArabic ? 'rtl' : 'ltr'}>
+    <section id='team' className="py-20 bg-gradient-to-br from-slate-50 via-white to-primary/5" dir={isArabic ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4 text-blue-600 border-blue-200">
+          <Badge variant="outline" className="mb-4 text-primary border-primary/20">
             <Users className="w-4 h-4 mr-2 ml-2" />
             {t('our_team.title')}
           </Badge>
@@ -373,8 +373,8 @@ const OurTeam: React.FC = () => {
                         className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     ) : (
-                      <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                        <User className="w-16 h-16 text-white" />
+                      <div className="h-48 bg-primary flex items-center justify-center">
+                        <User className="w-16 h-16 text-primary-foreground" />
                       </div>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -383,7 +383,7 @@ const OurTeam: React.FC = () => {
                         {isArabic ? consultant.ar_name : consultant.name}
                       </h3>
                       {consultant.specialization && (
-                        <p className="text-blue-200 text-sm">
+                        <p className="text-primary-foreground/80 text-sm">
                           {consultant.specialization}
                         </p>
                       )}
@@ -433,7 +433,7 @@ const OurTeam: React.FC = () => {
                     <div className="space-y-2">
                       <Button 
                         onClick={() => handleContactConsultant(consultant)}
-                        className="w-full bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800 text-white font-semibold"
+                        className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold"
                         disabled={!consultant.email}
                       >
                         <Mail className="w-4 h-4 mr-2 ml-2" />
@@ -456,7 +456,7 @@ const OurTeam: React.FC = () => {
                           variant="ghost"
                           size="sm"
                           onClick={() => window.open(consultant.linkedin, '_blank')}
-                          className="text-blue-600 hover:text-blue-700"
+                          className="text-primary hover:text-primary/80"
                         >
                           <Linkedin className="w-4 h-4 mr-2 ml-2" />
                           {t('our_team.linkedin')}
@@ -484,11 +484,11 @@ const OurTeam: React.FC = () => {
         )}
 
         {/* CTA Section */}
-        <div className="mt-16 bg-gradient-to-r from-blue-600 to-purple-700 rounded-2xl p-8 text-center text-white">
+        <div className="mt-16 bg-primary rounded-2xl p-8 text-center text-primary-foreground">
           <h3 className="text-3xl font-bold mb-4">
             {t('hero.cta_button')}
           </h3>
-          <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-primary-foreground/80 text-lg mb-8 max-w-2xl mx-auto">
             {t('hero.team_commitment')}
           </p>
           
@@ -496,7 +496,7 @@ const OurTeam: React.FC = () => {
             <Button 
               size="lg"
               variant="secondary"
-              className="bg-white text-blue-700 hover:bg-blue-50 font-semibold px-8"
+              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold px-8"
             >
               <Mail className="w-5 h-5 mr-2 ml-2" />
               {t('contact')}
@@ -506,7 +506,7 @@ const OurTeam: React.FC = () => {
             <Button 
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-700 font-semibold px-8"
+              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary font-semibold px-8"
             >
               <Phone className="w-5 h-5 mr-2 ml-2" />
               {t('hero.cta_button')}

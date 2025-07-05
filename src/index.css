@@ -35,6 +35,35 @@
   --chart-5: 0 0% 30%;
 }
 
+.dark {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  /* Ragaf logo blue/teal theme for dark mode */
+  --primary: 187 60% 45%; /* slightly brighter for dark backgrounds */
+  --primary-foreground: 0 0% 9%;
+  --secondary: 187 30% 15%; /* darker blue/teal background */
+  --secondary-foreground: 187 60% 75%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --destructive: 356 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 187 30% 18%;
+  --input: 187 30% 18%;
+  --ring: 187 60% 45%;
+  /* Accent and chart colors for dark mode */
+  --accent: 187 60% 60%;
+  --accent-foreground: 0 0% 9%;
+  --chart-1: 187 60% 45%;
+  --chart-2: 187 60% 60%;
+  --chart-3: 187 30% 50%;
+  --chart-4: 0 0% 70%;
+  --chart-5: 0 0% 40%;
+}
+
 
 
 

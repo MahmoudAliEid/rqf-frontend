@@ -29,12 +29,12 @@ const AboutUs: React.FC = () => {
     {
       icon: Shield,
       key: 'integrity',
-      color: 'text-blue-600'
+      color: 'text-primary'
     },
     {
       icon: Lightbulb,
       key: 'innovation',
-      color: 'text-purple-600'
+      color: 'text-primary'
     },
     {
       icon: Handshake,
@@ -48,7 +48,7 @@ const AboutUs: React.FC = () => {
       value: '15+',
       key: 'years_experience',
       icon: Award,
-      color: 'text-blue-600'
+      color: 'text-primary'
     },
     {
       value: '200+',
@@ -60,7 +60,7 @@ const AboutUs: React.FC = () => {
       value: '500+',
       key: 'projects_completed',
       icon: CheckCircle,
-      color: 'text-purple-600'
+      color: 'text-primary'
     },
     {
       value: '98%',
@@ -78,11 +78,11 @@ const AboutUs: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50" dir={isArabic ? 'rtl' : 'ltr'}>
+    <section id='about' className="py-20 bg-gradient-to-br from-slate-50 via-white to-primary/5" dir={isArabic ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4 text-blue-600 border-blue-200">
+          <Badge variant="outline" className="mb-4 text-primary border-primary/20">
             {t('about')}
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -95,12 +95,12 @@ const AboutUs: React.FC = () => {
 
         {/* Mission and Vision */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-blue-50 to-white">
+          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-primary/5 to-white">
             <CardHeader className="text-center pb-4">
-              <div className="mx-auto mb-4 w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                <Target className="w-8 h-8 text-blue-600" />
+              <div className="mx-auto mb-4 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                <Target className="w-8 h-8 text-primary" />
               </div>
-              <CardTitle className="text-2xl text-blue-900">
+              <CardTitle className="text-2xl text-primary">
                 {t('about_us.mission.title')}
               </CardTitle>
             </CardHeader>
@@ -111,12 +111,12 @@ const AboutUs: React.FC = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-purple-50 to-white">
+          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-primary/5 to-white">
             <CardHeader className="text-center pb-4">
-              <div className="mx-auto mb-4 w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
-                <Eye className="w-8 h-8 text-purple-600" />
+              <div className="mx-auto mb-4 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                <Eye className="w-8 h-8 text-primary" />
               </div>
-              <CardTitle className="text-2xl text-purple-900">
+              <CardTitle className="text-2xl text-primary">
                 {t('about_us.vision.title')}
               </CardTitle>
             </CardHeader>
@@ -158,7 +158,7 @@ const AboutUs: React.FC = () => {
         </div>
 
         {/* Statistics */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-700 rounded-2xl p-8 mb-16 text-white">
+        <div className="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-8 mb-16 text-white">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {statistics.map((stat) => {
               const Icon = stat.icon;
@@ -168,7 +168,7 @@ const AboutUs: React.FC = () => {
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-4xl font-bold mb-2">{stat.value}</div>
-                  <div className="text-blue-100 font-medium">
+                  <div className="text-white/80 font-medium">
                     {t(`about_us.statistics.${stat.key}`)}
                   </div>
                 </div>
@@ -185,7 +185,7 @@ const AboutUs: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-4xl mx-auto">
             {whyChooseUsItems.map((item, index) => (
               <div key={item} className="flex items-center space-x-4 space-x-reverse p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-primary to-primary/80 rounded-full flex items-center justify-center text-white font-bold text-lg">
                   {index + 1}
                 </div>
                 <p className="text-gray-700 font-medium text-lg">
@@ -197,7 +197,7 @@ const AboutUs: React.FC = () => {
           
           <Button 
             size="lg"
-            className="bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           >
             {t('hero.cta_button')}
           </Button>

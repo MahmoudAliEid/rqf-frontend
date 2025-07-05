@@ -162,11 +162,11 @@ const OurServices: React.FC = () => {
   }
 
   return (
-    <section className="py-20 bg-white" dir={isArabic ? 'rtl' : 'ltr'}>
+    <section  id="services" className="py-20 bg-white" dir={isArabic ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4 text-blue-600 border-blue-200">
+          <Badge variant="outline" className="mb-4 text-primary border-primary/20">
             <Briefcase className="w-4 h-4 mr-2 ml-2" />
             {t('our_services.title')}
           </Badge>
@@ -212,7 +212,7 @@ const OurServices: React.FC = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <div className="h-48 bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
                       <div className="text-center text-white">
                         <Briefcase className="w-12 h-12 mx-auto mb-2" />
                         <h3 className="font-bold text-lg">
@@ -231,7 +231,7 @@ const OurServices: React.FC = () => {
                   <div className="space-y-3 h-20">
                     <Button 
                       onClick={() => handleRequestConsultation(isArabic ? service.ar_name : service.name)}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800 text-white font-semibold"
+                      className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold"
                     >
                       {t('our_services.request_consultation')}
                       {isArabic ? (
@@ -266,11 +266,11 @@ const OurServices: React.FC = () => {
         )}
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-700 rounded-2xl p-8 text-center text-white">
+        <div className="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-8 text-center text-white">
           <h3 className="text-3xl font-bold mb-4">
             {t('our_services.get_started')}
           </h3>
-          <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
             {t('hero.team_commitment')}
           </p>
           
@@ -279,7 +279,7 @@ const OurServices: React.FC = () => {
               onClick={handleContactExpert}
               size="lg"
               variant="secondary"
-              className="bg-white text-blue-700 hover:bg-blue-50 font-semibold px-8"
+              className="bg-white text-primary hover:bg-primary/5 font-semibold px-8"
             >
               <Mail className="w-5 h-5 mr-2 ml-2" />
               {t('our_services.contact_expert')}
@@ -288,7 +288,7 @@ const OurServices: React.FC = () => {
             <Button 
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-700 font-semibold px-8"
+              className="border-white text-white hover:bg-white hover:text-primary font-semibold px-8"
             >
               <Phone className="w-5 h-5 mr-2 ml-2" />
               {t('hero.cta_button')}

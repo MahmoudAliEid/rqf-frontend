@@ -6,7 +6,7 @@ const reasons = [
     title: 'خبرة واحترافية',
     description: 'فريق متخصص من المهندسين والفنيين ذوي الخبرة العالية في مجال تنسيق الحدائق وتركيب أنظمة الري.',
     icon: <BadgeCheck className="h-6 w-6" />,
-    color: 'bg-blue-500/10 text-blue-500',
+    color: 'bg-primary/10 text-primary',
   },
   {
     title: 'جودة ممتازة',
@@ -24,7 +24,7 @@ const reasons = [
     title: 'خدمة ما بعد البيع',
     description: 'نقدم خدمات صيانة وضمان للمشاريع المنفذة حسب العقود المبرمة لضمان استمرار جودة الخدمة.',
     icon: <Clock className="h-6 w-6" />,
-    color: 'bg-purple-500/10 text-purple-500',
+    color: 'bg-primary/10 text-primary',
   },
 ];
 

@@ -4,20 +4,22 @@ import { LayoutDashboardIcon, LogInIcon, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
-
-const navItems = [
-  { name: "الرئيسية", href: "/#home" },
-  { name: "من نحن", href: "/#about" },
-  { name: "خدماتنا", href: "/#services" },
-  { name: "فريقنا", href: "/#team" },
-  { name: "لماذا نحن", href: "/#why-us" },
-  { name: "اتصل بنا", href: "/#contact" },
-];
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [valueToken] = useLocalStorage("token", "");
+  const { t } = useTranslation();
+
+  const navItems = [
+    { nameKey: "nav.home", href: "/#home" },
+    { nameKey: "nav.about", href: "/#about" },
+    { nameKey: "nav.services", href: "/#services" },
+    { nameKey: "nav.team", href: "/#team" },
+    { nameKey: "nav.why_us", href: "/#why-us" },
+    { nameKey: "nav.contact", href: "/#contact" },
+  ];
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -55,7 +57,7 @@ const Header = () => {
           aria-label="الشعار"
         >
           <img
-            src="/ragaf-logo.png"
+            src="/Ragaf-logo.png"
             alt="Ragaf Consulting Co. Logo"
             className="h-20 py-1 object-contain drop-shadow-md"
             style={{ maxWidth: 120 }}
@@ -78,7 +80,7 @@ const Header = () => {
                   className={`relative  text-sm font-medium  py-2 px-4 rounded-md hover:bg-primary transition-all duration-500 hover:text-white`}
                   onClick={closeMenu}
                 >
-                  {item.name}
+                  {t(item.nameKey)}
                   <span className="absolute -bottom-1 right-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
                 </a>
               </li>
@@ -91,21 +93,15 @@ const Header = () => {
           <a href="/#contact" className="hidden md:block">
             <Button className="flex items-center gap-2 bg-primary text-white">
               <Phone className="h-4 w-4" />
-              <span>اتصل بنا</span>
+              <span>{t("nav.contact")}</span>
             </Button>
           </a>
           {valueToken ? (
             <Link to="/admin/consultants">
-              <Button
-                className="hidden md:flex items-center gap-2 bg-primary text-primary-foreground shadow-lg transition-transform duration-300 hover:shadow-2xl border-0"
-                style={{
-                  backgroundClip: "border-box",
-                  boxShadow: "0 4px 24px 0 rgba(120, 36, 255, 0.2)",
-                }}
-              >
+              <Button className="hidden md:flex items-center gap-2 bg-primary text-primary-foreground shadow-lg transition-transform duration-300 hover:shadow-2xl border-0">
                 <LayoutDashboardIcon className="h-4 w-4 drop-shadow-glow" />
                 <span className="font-bold tracking-wide drop-shadow-glow">
-                  لوحة التحكم
+                  {t("auth.dashboard")}
                 </span>
               </Button>
             </Link>
@@ -116,7 +112,7 @@ const Header = () => {
                 className="hidden md:flex items-center gap-2 text-primary border-primary hover:bg-primary hover:text-white transition-all duration-500"
               >
                 <LogInIcon className="h-4 w-4" />
-                <span>تسجيل الدخول</span>
+                <span>{t("auth.login")}</span>
               </Button>
             </Link>
           )}
@@ -127,7 +123,7 @@ const Header = () => {
             size="sm"
             className="md:hidden"
             onClick={toggleMenu}
-            aria-label={isOpen ? "إغلاق القائمة" : "فتح القائمة"}
+            aria-label={isOpen ? t("common.close_menu") : t("common.open_menu")}
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
@@ -158,7 +154,7 @@ const Header = () => {
                       className="block text-lg font-medium hover:text-primary"
                       onClick={closeMenu}
                     >
-                      {item.name}
+                      {t(item.nameKey)}
                     </a>
                   </motion.li>
                 ))}
@@ -170,7 +166,7 @@ const Header = () => {
                   <a href="/#contact">
                     <Button className="w-full">
                       <Phone className="mr-2 h-4 w-4" />
-                      <span>اتصل بنا</span>
+                      <span>{t("nav.contact")}</span>
                     </Button>
                   </a>
                 </motion.li>
@@ -181,10 +177,10 @@ const Header = () => {
                     transition={{ delay: (navItems.length + 1) * 0.1 }}
                   >
                     <Link to="/admin/consultants">
-                      <Button className="w-full bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 text-white shadow-lg transition-transform duration-300 hover:shadow-2xl border-0">
+                      <Button className="w-full bg-primary text-primary-foreground shadow-lg transition-transform duration-300 hover:shadow-2xl border-0">
                         <LayoutDashboardIcon className="h-4 w-4 drop-shadow-glow" />
                         <span className="font-bold tracking-wide drop-shadow-glow">
-                          لوحة التحكم
+                          {t("auth.dashboard")}
                         </span>
                       </Button>
                     </Link>
@@ -197,7 +193,7 @@ const Header = () => {
                   >
                     <Link to="/login">
                       <Button className="w-full bg-primary text-white">
-                        تسجيل الدخول
+                        {t("auth.login")}
                       </Button>
                     </Link>
                   </motion.li>

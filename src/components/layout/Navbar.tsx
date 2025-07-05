@@ -8,11 +8,11 @@ import { useLocalStorage } from "usehooks-ts";
 import { LayoutDashboardIcon, LogInIcon, Menu, Phone, X } from "lucide-react";
 import { Link } from "react-router-dom";
 const navItems = [
-  { name: "home", href: "/#home" },
-  { name: "about", href: "/#about" },
-  { name: "services", href: "/#services" },
-  { name: "team", href: "/#team" },
-  { name: "contact", href: "/#contact" },
+  { nameKey: "nav.home", href: "/#home" },
+  { nameKey: "nav.about", href: "/#about" },
+  { nameKey: "nav.services", href: "/#services" },
+  { nameKey: "nav.team", href: "/#team" },
+  { nameKey: "nav.contact", href: "/#contact" },
 ];
 
 const Navbar = () => {
@@ -45,6 +45,13 @@ const Navbar = () => {
     const newLang = lang === "en" ? "ar" : "en";
     i18n.changeLanguage(newLang);
     setLang(newLang);
+    
+    // Update document direction
+    if (newLang === "ar") {
+      document.documentElement.setAttribute("dir", "rtl");
+    } else {
+      document.documentElement.removeAttribute("dir");
+    }
   };
 
   return (
@@ -60,13 +67,13 @@ const Navbar = () => {
         <Link
           to="/"
           className="flex items-center py-1 gap-2"
-          aria-label="الشعار"
+          aria-label={t("footer.logo_alt")}
         >
           <img
-            security="true"
             src="/Ragaf-logo.png"
-            alt="الشعار"
-            className="h-32 py-1 w-h-32 object-cover"
+            alt={t("footer.logo_alt") || "الشعار"}
+            className="h-20 w-32 py-1 object-contain drop-shadow-md"
+            style={{ maxWidth: 120 }}
           />
         </Link>
 
@@ -86,7 +93,7 @@ const Navbar = () => {
                   className={`relative  text-sm font-medium  py-2 px-4 rounded-md hover:bg-primary transition-all duration-500 hover:text-white`}
                   onClick={closeMenu}
                 >
-                  {t(item.name)}
+                  {t(item.nameKey)}
 
                   <span className="absolute -bottom-1 right-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
                 </a>
@@ -97,38 +104,34 @@ const Navbar = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-foreground"
-          ></Button>
+          {/* Language Switcher */}
           <Button
             variant="ghost"
             onClick={toggleLanguage}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 border-primary border text-primary hover:bg-primary/80 transition-colors duration-300"
           >
-            <Globe />
+            <Globe className="h-4 w-4" />
             <span>{lang === "en" ? "EN" : "AR"}</span>
           </Button>
 
           <a href="/#contact" className="hidden md:block">
             <Button className="flex items-center gap-2 bg-primary text-white">
               <Phone className="h-4 w-4" />
-              <span>اتصل بنا</span>
+              <span>{t("nav.contact")}</span>
             </Button>
           </a>
           {valueToken ? (
             <Link to="/admin/consultants">
               <Button
-                className="hidden md:flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 text-white shadow-lg transition-transform duration-300 hover:shadow-2xl border-0"
+                className="hidden md:flex items-center gap-2 bg-gradient-to-r from-primary to-primary/80 text-white shadow-lg transition-transform duration-300 hover:shadow-2xl border-0"
                 style={{
                   backgroundClip: "border-box",
-                  boxShadow: "0 4px 24px 0 rgba(120, 36, 255, 0.2)",
+                  boxShadow: "0 4px 24px 0 rgba(37, 99, 235, 0.2)",
                 }}
               >
                 <LayoutDashboardIcon className="h-4 w-4 drop-shadow-glow" />
                 <span className="font-bold tracking-wide drop-shadow-glow">
-                  لوحة التحكم
+                  {t("auth.dashboard")}
                 </span>
               </Button>
             </Link>
@@ -139,7 +142,7 @@ const Navbar = () => {
                 className="hidden md:flex items-center gap-2 text-primary border-primary hover:bg-primary hover:text-white transition-all duration-500"
               >
                 <LogInIcon className="h-4 w-4" />
-                <span>تسجيل الدخول</span>
+                <span>{t("auth.login")}</span>
               </Button>
             </Link>
           )}
@@ -150,7 +153,7 @@ const Navbar = () => {
             size="sm"
             className="md:hidden"
             onClick={toggleMenu}
-            aria-label={isOpen ? "إغلاق القائمة" : "فتح القائمة"}
+            aria-label={isOpen ? t("common.close_menu") : t("common.open_menu")}
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
@@ -181,7 +184,7 @@ const Navbar = () => {
                       className="block text-lg font-medium hover:text-primary"
                       onClick={closeMenu}
                     >
-                      {t(item.name)}
+                      {t(item.nameKey)}
                     </a>
                   </motion.li>
                 ))}
@@ -193,7 +196,7 @@ const Navbar = () => {
                   <a href="/#contact">
                     <Button className="w-full">
                       <Phone className="mr-2 h-4 w-4" />
-                      <span>اتصل بنا</span>
+                      <span>{t("nav.contact")}</span>
                     </Button>
                   </a>
                 </motion.li>
@@ -204,10 +207,10 @@ const Navbar = () => {
                     transition={{ delay: (navItems.length + 1) * 0.1 }}
                   >
                     <Link to="/admin/consultants">
-                      <Button className="w-full bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 text-white shadow-lg transition-transform duration-300 hover:shadow-2xl border-0">
+                      <Button className="w-full bg-gradient-to-r from-primary to-primary/80 text-white shadow-lg transition-transform duration-300 hover:shadow-2xl border-0">
                         <LayoutDashboardIcon className="h-4 w-4 drop-shadow-glow" />
                         <span className="font-bold tracking-wide drop-shadow-glow">
-                          لوحة التحكم
+                          {t("auth.dashboard")}
                         </span>
                       </Button>
                     </Link>
@@ -220,7 +223,7 @@ const Navbar = () => {
                   >
                     <Link to="/login">
                       <Button className="w-full bg-primary text-white">
-                        تسجيل الدخول
+                        {t("auth.login")}
                       </Button>
                     </Link>
                   </motion.li>

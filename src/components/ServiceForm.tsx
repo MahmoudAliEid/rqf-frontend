@@ -189,24 +189,24 @@ function ServiceForm({
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 w-full min-h-screen mt-12 items-center justify-center px-2 sm:px-4 bg-transparent",
+        "flex flex-col gap-6 w-full min-h-screen pt-20 pb-8 items-center justify-center px-2 sm:px-4 bg-transparent",
         className
       )}
       {...props}>
-      <Card className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl fade-up p-2 sm:p-4 md:p-6 lg:p-8">
-        <CardHeader>
-          <CardTitle className="text-xl sm:text-2xl md:text-3xl">
+      <Card className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl fade-up p-2 sm:p-4 md:p-6 lg:p-8">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-center">
             {props.id ? t("edit_service.title") : t("create_service.title")}
           </CardTitle>
-          <CardDescription className="text-sm md:text-base">
+          <CardDescription className="text-xs sm:text-sm md:text-base text-center">
             {props.id ? t("edit_service.form_description") : t("create_service.form_description")}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="name">{t('create_service.name')}</Label>
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <div className="grid gap-4 sm:gap-6">
+              <div className="grid gap-2 sm:gap-3">
+                <Label htmlFor="name" className="text-sm sm:text-base font-medium">{t('create_service.name')}</Label>
                 <Input
                   id="name"
                   type="name"

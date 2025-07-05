@@ -167,7 +167,7 @@ const ContactUs: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50" dir={isArabic ? 'rtl' : 'ltr'}>
+    <section id="contact" className="py-20 bg-gradient-to-br from-slate-50 via-white to-primary/5" dir={isArabic ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <motion.h2
@@ -175,7 +175,7 @@ const ContactUs: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent"
           >
             {t("contact_us.title")}
           </motion.h2>
@@ -200,8 +200,8 @@ const ContactUs: React.FC = () => {
           >
             <Card className="h-full hover:shadow-lg transition-shadow duration-300">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Mail className="w-8 h-8 text-blue-600" />
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Mail className="w-8 h-8 text-primary" />
                 </div>
                 <CardTitle className="text-xl">{isArabic ? "البريد الإلكتروني" : "Email"}</CardTitle>
               </CardHeader>
@@ -248,8 +248,8 @@ const ContactUs: React.FC = () => {
           >
             <Card className="h-full hover:shadow-lg transition-shadow duration-300">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-8 h-8 text-purple-600" />
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-8 h-8 text-primary" />
                 </div>
                 <CardTitle className="text-xl">{isArabic ? "ساعات العمل" : "Working Hours"}</CardTitle>
               </CardHeader>

@@ -287,17 +287,17 @@ function ConsultantForm({
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 w-full min-h-screen mt-12 items-center justify-center px-2 sm:px-4 bg-transparent",
+        "flex flex-col gap-6 w-full min-h-screen pt-20 pb-8 items-center justify-center px-2 sm:px-4 bg-transparent",
         className
       )}
       {...props}
     >
       <Card className="w-full max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl xl:max-w-4xl fade-up p-2 sm:p-4 md:p-6 lg:p-8">
-        <CardHeader>
-          <CardTitle className="text-lg sm:text-xl md:text-2xl lg:text-3xl">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-center">
             {props.id ? t("edit_consultant.title") : t("create_consultant.title")}
           </CardTitle>
-          <CardDescription className="text-xs sm:text-sm md:text-base">
+          <CardDescription className="text-xs sm:text-sm md:text-base text-center">
             {props.id ? t("edit_consultant.form_description") : t("create_consultant.form_description")}
           </CardDescription>
         </CardHeader>

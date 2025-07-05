@@ -2,8 +2,8 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
-import { Upload } from "./components/pages/Upload";
-import OurWork from "./components/sections/OurWork";
+// import { Upload } from "./components/pages/Upload";
+// import OurWork from "./components/sections/OurWork";
 import AddConsultant from "./components/pages/AddConsultant";
 import AddService from "./components/pages/AddService";
 import AddNews from "./components/pages/AddNews";
@@ -25,14 +25,14 @@ const AppRouter = () => {
         path="/login"
         element={<Login />}
       />
-      <Route
+      {/* <Route
         path="/our-work"
         element={<OurWork />}
       />
       <Route
         path="/admin/upload"
         element={<Upload />}
-      />
+      /> */}
       <Route
         path="/admin/consultants"
         element={<ConsulatantsList />}

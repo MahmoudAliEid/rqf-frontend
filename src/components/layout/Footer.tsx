@@ -5,18 +5,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { t } = useTranslation();
 
-           <p className="text-muted-foreground">
-            &copy; {currentYear} {t("footer.rights")}
-          </p>
-          <p className="text-sm text-muted-foreground">
-            {t("footer.design")}{" "}
-            <a
-              href="https://shimaamohmed.bio.link/"
-              className="font-medium text-primary hover:underline"
-            >
-              SM
-            </a>
-          </p>  <footer className="relative bg-secondary/50 pt-16 dark:bg-secondary/10">
+  return (
+    <footer className="relative bg-secondary/50 pt-16 dark:bg-secondary/10">
       <div className="container-custom">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo and About */}
@@ -97,15 +87,7 @@ const Footer = () => {
                   {t("footer.fastlink.team")}
                 </a>
               </li>
-              <li>
-                <a
-                  href="#testimonials"
-                  className="inline-flex items-center text-muted-foreground hover:text-primary"
-                >
-                  <ArrowUpRight className="ml-1 h-4 w-4" />
-                  {t("footer.fastlink.testimonials")}
-                </a>
-              </li>
+             
               <li>
                 <a
                   href="#contact"
@@ -185,12 +167,16 @@ const Footer = () => {
                 {t("footer.contact.phone")}
               </li>
               <li className="text-muted-foreground">
-                <strong>العنوان:</strong>
+                <strong>{
+t("footer.contact.addressTitle")
+                  }</strong>
                 <br />
                 {t("footer.contact.address")}
               </li>
               <li className="text-muted-foreground">
-                <strong>ساعات العمل:</strong>
+                <strong>{
+t("footer.contact.timeTitle")
+                  }</strong>
                 <br />
                 {t("footer.contact.time")}
               </li>
@@ -217,11 +203,10 @@ const Footer = () => {
 
         <div className="flex flex-col items-center justify-between gap-1 py-6 text-center md:flex-row md:text-right">
           <p className="text-muted-foreground">
-            &copy; {currentYear} شركة رقف للاستشارات الإدارية. جميع الحقوق
-            محفوظة.
+            &copy; {currentYear} {t("footer.rights")}
           </p>
           <p className="text-sm text-muted-foreground">
-            تصميم وتطوير بواسطة{" "}
+          {t("footer.designed")}
             <a
               href="https://shimaamohamed.bio.link/"
               className="font-medium text-primary hover:underline"
